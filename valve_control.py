@@ -108,7 +108,7 @@ while True:
 
                     while item == -1:
                         toRemove = raw_input(("\nSelect an event to remove.\n"))
-                        if toRemove.isdigit()
+                        if toRemove.isdigit():
                             item = int(toRemove) - 1
 
                     workingSchedule.eventList.pop(item)
