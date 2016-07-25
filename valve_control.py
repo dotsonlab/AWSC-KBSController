@@ -13,7 +13,6 @@ daily flow rate data
 from valve_schedule import Schedule
 import datetimes
 import time
-import re
 
 workingSchedule = Schedule()
 midnight = datetime.time()
