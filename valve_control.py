@@ -11,7 +11,7 @@ Outputs: Sequence of events to a screen as they happen.
 daily flow rate data
 '''
 from valve_schedule import Schedule
-import datetimes
+import datetime
 import time
 
 workingSchedule = Schedule()
