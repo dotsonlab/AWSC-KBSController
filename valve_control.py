@@ -11,8 +11,9 @@ Outputs: Sequence of events to a screen as they happen.
 daily flow rate data
 '''
 from valve_schedule import Schedule
-import datetime
+import datetimes
 import time
+import re
 
 workingSchedule = Schedule()
 midnight = datetime.time()
