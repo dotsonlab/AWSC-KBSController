@@ -25,7 +25,12 @@ while True:
     print "\n1: Run Schedule"
     print "2: Manage Schedules"
     print "3: Exit"
-    option = int(raw_input("\nPlease select an option.\n"))
+    option = 0
+    
+    while option == 0:
+        input = raw_input("\nPlease select an option.\n")
+        if input.isdigit():
+            option = int(input)
 
     #run schedule: set midnight time, set flow enable to high (off).
     #Import a schedule or sort and use current schedule
