@@ -51,8 +51,19 @@ class Event:
             GPIO.output("P8_12", GPIO.HIGH)
         print "%s valve open triggered" % tag
         while not self.Open(tag):
-            if limitCount == 4:
+            if limitCount == 5:
                 limitCount = 0
+                if tag == "kitchen_sink":
+                    GPIO.output("P8_8", GPIO.HIGH)
+                elif tag == "bathroom_sink":
+                    GPIO.output("P8_10", GPIO.HIGH)
+                elif tag == "shower":
+                    GPIO.output("P8_12", GPIO.HIGH)
+                time.sleep(7)
+                if not self.Open():
+                    print "!!! Either the sensors are having issues or the valve is not opening fully. !!!"
+                else:
+                    print "There was an issue with the valve opening but it cleared on a second attempt."
                 break
             time.sleep(2)
             limitCount = limitCount + 1
@@ -68,18 +79,18 @@ class Event:
             GPIO.output("P8_12", GPIO.LOW)
         print "%s valve close triggered" % tag
         while not self.Closed(tag):
-            if limitCount == 4:#if after ~10 seconds if not closed attempt to close again 
+            if limitCount == 5:#if after ~10 seconds if not closed attempt to close again 
                 limitCount = 0
                 if tag == "kitchen_sink":#cycle the correct valve
-                    GPIO.output("P8_8", GPIO.LOW)
+                    GPIO.output("P8_8", GPIO.HIGH)
                     time.sleep(5)
                     GPIO.output("P8_8", GPIO.LOW)
                 elif tag == "bathroom_sink":
-                    GPIO.output("P8_10", GPIO.LOW)
+                    GPIO.output("P8_10", GPIO.HIGH)
                     time.sleep(5)
                     GPIO.output("P8_10", GPIO.LOW)
                 elif tag == "shower":
-                    GPIO.output("P8_12", GPIO.LOW)
+                    GPIO.output("P8_12", GPIO.HIGH)
                     time.sleep(5)
                     GPIO.output("P8_12", GPIO.LOW)
                 time.sleep(7)
