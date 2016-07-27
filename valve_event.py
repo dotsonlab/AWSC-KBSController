@@ -42,6 +42,7 @@ class Event:
         return saveEvent
     
     def valveTrigger(self, tag):
+        limitCount = 0
         if tag == "kitchen_sink":
             GPIO.output("P8_8", GPIO.HIGH)
         elif tag == "bathroom_sink":
@@ -50,9 +51,15 @@ class Event:
             GPIO.output("P8_12", GPIO.HIGH)
         print "%s valve open triggered" % tag
         while not self.Open(tag):
+            if limitCount == 4:
+                limitCount = 0
+                break
             time.sleep(2)
+            limitCount = limitCount + 1
+            
 
     def valveStop(self, tag):
+        limitCount = 0
         if tag == "kitchen_sink":
             GPIO.output("P8_8", GPIO.LOW)
         elif tag == "bathroom_sink":
@@ -61,7 +68,28 @@ class Event:
             GPIO.output("P8_12", GPIO.LOW)
         print "%s valve close triggered" % tag
         while not self.Closed(tag):
+            if limitCount == 4:#if after ~10 seconds if not closed attempt to close again 
+                limitCount = 0
+                if tag == "kitchen_sink":#cycle the correct valve
+                    GPIO.output("P8_8", GPIO.LOW)
+                    time.sleep(5)
+                    GPIO.output("P8_8", GPIO.LOW)
+                elif tag == "bathroom_sink":
+                    GPIO.output("P8_10", GPIO.LOW)
+                    time.sleep(5)
+                    GPIO.output("P8_10", GPIO.LOW)
+                elif tag == "shower":
+                    GPIO.output("P8_12", GPIO.LOW)
+                    time.sleep(5)
+                    GPIO.output("P8_12", GPIO.LOW)
+                time.sleep(7)
+                if not self.Closed(tag):#check if the problem was fixed
+                    print "!!! There is a problem with the valve or the limit sensors. !!!"
+                else:
+                    print "There was an issue with the valve but it cleared on a open/close cycle."
+                break
             time.sleep(2)
+            limitCount = limitCount + 1
     
     def Open(self, tag):
         if tag == "kitchen_sink":
