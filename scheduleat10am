@@ -1,7 +1,7 @@
 10:01:00 10:01:30 bathroom_sink 
-10:06:00 10:06:30 bathroom_sink
+10:06:00 10:06:30 bathroom_sink 
 10:07:00 10:07:10 kitchen_sink 
-10:11:00 10:11:30 bathroom_sink
+10:11:00 10:11:30 bathroom_sink 
 10:15:00 10:15:10 kitchen_sink 
 10:16:00 10:16:30 bathroom_sink 
 10:17:00 10:20:38 shower 
@@ -27,7 +27,7 @@
 21:02:00 21:02:30 bathroom_sink 
 21:07:00 21:07:30 bathroom_sink 
 21:12:00 21:12:30 bathroom_sink 
-21:17:00 21:17:30 bathroom_sink
+21:17:00 21:17:30 bathroom_sink 
 21:30:00 21:30:10 kitchen_sink  
 21:35:00 21:35:11 kitchen_sink 
 22:00:00 22:00:11 kitchen_sink 
