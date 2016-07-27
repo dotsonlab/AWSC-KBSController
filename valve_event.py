@@ -51,7 +51,7 @@ class Event:
             GPIO.output("P8_12", GPIO.HIGH)
         print "%s valve open triggered" % tag
         while not self.Open(tag):
-            if limitCount == 5:
+            if limitCount == 6:
                 limitCount = 0
                 if tag == "kitchen_sink":
                     GPIO.output("P8_8", GPIO.HIGH)
@@ -79,7 +79,7 @@ class Event:
             GPIO.output("P8_12", GPIO.LOW)
         print "%s valve close triggered" % tag
         while not self.Closed(tag):
-            if limitCount == 5:#if after ~10 seconds if not closed attempt to close again 
+            if limitCount == 6:#if after ~10 seconds if not closed attempt to close again 
                 limitCount = 0
                 if tag == "kitchen_sink":#cycle the correct valve
                     GPIO.output("P8_8", GPIO.HIGH)
