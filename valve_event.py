@@ -60,7 +60,11 @@ class Event:
                 elif tag == "shower":
                     GPIO.output("P8_12", GPIO.HIGH)
                 time.sleep(7)
+<<<<<<< HEAD
                 if not self.Open(tag):
+=======
+                if not self.Open():
+>>>>>>> 4a2b065a3c81f48b6070c045a1298a536f2ccce9
                     print "!!! Either the sensors are having issues or the valve is not opening fully. !!!"
                 else:
                     print "There was an issue with the valve opening but it cleared on a second attempt."
